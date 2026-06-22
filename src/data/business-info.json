@@ -1,0 +1,106 @@
+{
+  "businessName": "Bella Beauty Studio",
+  "phone": "+1 (305) 555-0199",
+  "email": "hello@bellabeautystudio.com",
+  "address": "123 Beauty Street, Miami, FL 33101",
+  "workingHours": [
+    {
+      "days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opensAt": "09:00",
+      "closesAt": "19:00",
+      "isClosed": false
+    },
+    {
+      "days": ["Sunday"],
+      "opensAt": null,
+      "closesAt": null,
+      "isClosed": true
+    }
+  ],
+  "services": [
+    {
+      "id": "hair-cut",
+      "name": "Hair Cut",
+      "category": "Hair",
+      "price": 30,
+      "currency": "USD"
+    },
+    {
+      "id": "hair-coloring",
+      "name": "Hair Coloring",
+      "category": "Hair",
+      "price": 80,
+      "currency": "USD"
+    },
+    {
+      "id": "manicure",
+      "name": "Manicure",
+      "category": "Nails",
+      "price": 25,
+      "currency": "USD"
+    },
+    {
+      "id": "pedicure",
+      "name": "Pedicure",
+      "category": "Nails",
+      "price": 35,
+      "currency": "USD"
+    },
+    {
+      "id": "facial-treatment",
+      "name": "Facial Treatment",
+      "category": "Skin Care",
+      "price": 60,
+      "currency": "USD"
+    },
+    {
+      "id": "eyebrow-shaping",
+      "name": "Eyebrow Shaping",
+      "category": "Brows",
+      "price": 20,
+      "currency": "USD"
+    }
+  ],
+  "promotions": [
+    {
+      "id": "hair-coloring-and-cut",
+      "name": "Hair Coloring + Hair Cut",
+      "serviceIds": ["hair-coloring", "hair-cut"],
+      "discountType": "percentage",
+      "discountValue": 15,
+      "isActive": true
+    },
+    {
+      "id": "manicure-and-pedicure",
+      "name": "Manicure + Pedicure",
+      "serviceIds": ["manicure", "pedicure"],
+      "discountType": "percentage",
+      "discountValue": 10,
+      "isActive": true
+    }
+  ],
+  "faq": [
+    {
+      "id": "appointment-required",
+      "question": "Is an appointment required?",
+      "answer": "Appointments are recommended to ensure availability, but walk-ins are welcome when the schedule allows."
+    },
+    {
+      "id": "parking-available",
+      "question": "Is parking available?",
+      "answer": "Yes, complimentary parking is available for studio guests."
+    },
+    {
+      "id": "accepted-payment-methods",
+      "question": "Which payment methods are accepted?",
+      "answer": "We accept cash, major credit cards, and contactless payments."
+    }
+  ]
+}
