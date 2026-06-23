@@ -7,6 +7,10 @@ const EMPTY_RESPONSE_FALLBACK =
 
 let openAIClient: OpenAI | null = null;
 
+function isMockAIEnabled(): boolean {
+  return process.env.USE_MOCK_AI === "true";
+}
+
 function getOpenAIClient(): OpenAI {
   const apiKey = process.env.OPENAI_API_KEY;
 
@@ -21,6 +25,40 @@ function getOpenAIClient(): OpenAI {
   return openAIClient;
 }
 
+function includesAny(message: string, keywords: string[]): boolean {
+  return keywords.some((keyword) => message.includes(keyword));
+}
+
+function generateMockChatResponse(userMessage: string): string {
+  const normalizedMessage = userMessage.toLowerCase();
+
+  if (includesAny(normalizedMessage, ["services", "service"])) {
+    return "We offer Hair Cut, Hair Coloring, Manicure, Pedicure, Facial Treatment and Eyebrow Shaping.";
+  }
+
+  if (includesAny(normalizedMessage, ["price", "pricing", "cost"])) {
+    return "Our prices start from $20 and vary depending on the selected service.";
+  }
+
+  if (includesAny(normalizedMessage, ["hours", "open"])) {
+    return "We are open Monday to Saturday from 09:00 AM to 07:00 PM.";
+  }
+
+  if (includesAny(normalizedMessage, ["address", "location"])) {
+    return "We are located at 123 Beauty Street, Miami, FL 33101.";
+  }
+
+  if (includesAny(normalizedMessage, ["promotion", "discount"])) {
+    return "We currently offer Hair Coloring + Hair Cut with 15% discount and Manicure + Pedicure with 10% discount.";
+  }
+
+  if (includesAny(normalizedMessage, ["appointment", "booking", "book"])) {
+    return "To book an appointment, please provide your full name, phone number and desired service.";
+  }
+
+  return "Hello! How can I help you with our beauty services today?";
+}
+
 /**
  * Generates a response from the Bella Beauty Studio support assistant.
  *
@@ -33,6 +71,10 @@ export async function generateChatResponse(
   systemPrompt: string,
   userMessage: string,
 ): Promise<string> {
+  if (isMockAIEnabled()) {
+    return generateMockChatResponse(userMessage);
+  }
+
   try {
     const client = getOpenAIClient();
     const completion = await client.chat.completions.create({
