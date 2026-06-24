@@ -27,7 +27,7 @@ export function ChatInput({ isLoading, onSubmit }: ChatInputProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex gap-2 border-t border-neutral-200 bg-white p-3 sm:p-4"
+      className="flex gap-3 border-t border-neutral-200 bg-white/95 p-3 backdrop-blur sm:p-5"
     >
       <label htmlFor="chat-message" className="sr-only">
         Message
@@ -40,12 +40,12 @@ export function ChatInput({ isLoading, onSubmit }: ChatInputProps) {
         onChange={(event) => setMessage(event.target.value)}
         disabled={isLoading}
         placeholder="Ask about services, prices, or bookings..."
-        className="min-w-0 flex-1 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 outline-none transition focus:border-neutral-400 focus:bg-white focus:ring-2 focus:ring-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
+        className="min-w-0 flex-1 rounded-full border border-neutral-200 bg-neutral-50 px-5 py-3.5 text-sm text-neutral-900 shadow-inner outline-none transition placeholder:text-neutral-400 focus:border-rose-300 focus:bg-white focus:ring-4 focus:ring-rose-100 disabled:cursor-not-allowed disabled:opacity-60"
       />
       <button
         type="submit"
         disabled={isDisabled}
-        className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
+        className="rounded-full bg-gradient-to-r from-neutral-950 to-neutral-800 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-neutral-300/70 transition hover:-translate-y-0.5 hover:from-rose-600 hover:to-fuchsia-600 hover:shadow-rose-200 disabled:cursor-not-allowed disabled:bg-none disabled:bg-neutral-300 disabled:shadow-none sm:px-7"
       >
         Send
       </button>
