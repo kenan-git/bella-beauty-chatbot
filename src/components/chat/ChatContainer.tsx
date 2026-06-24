@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import { useChat } from "../../hooks/useChat";
 import type { ChatMessage as ChatMessageType } from "../../types/chat";
@@ -17,6 +17,7 @@ const QUICK_QUESTIONS = [
 
 export function ChatContainer() {
   const { messages, isLoading, error, sendMessage } = useChat();
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const hasUserMessages = messages.some((message) => message.role === "user");
 
   const welcomeMessage = useMemo<ChatMessageType>(
@@ -29,6 +30,10 @@ export function ChatContainer() {
     }),
     [],
   );
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
 
   return (
     <section
@@ -83,6 +88,8 @@ export function ChatContainer() {
             {error}
           </p>
         ) : null}
+
+        <div ref={messagesEndRef} />
       </div>
 
       <ChatInput isLoading={isLoading} onSubmit={sendMessage} />
