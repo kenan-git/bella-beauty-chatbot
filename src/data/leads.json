@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "ee9da7bf-efd2-4a7b-afa9-c38722c21a96",
+    "name": "Sarah Johnson",
+    "phone": "555-123-4567.",
+    "service": "a manicure appointment",
+    "status": "new",
+    "createdAt": "2026-06-24T14:57:28.832Z"
+  }
+]

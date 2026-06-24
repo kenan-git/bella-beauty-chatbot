@@ -7,9 +7,30 @@ import { randomUUID } from "node:crypto";
 import type { AppointmentLead, CreateLeadInput } from "../types/lead";
 
 const LEADS_FILE_PATH = path.join(process.cwd(), "src", "data", "leads.json");
+const SERVICE_NAMES = [
+  "Hair Cut",
+  "Hair Coloring",
+  "Manicure",
+  "Pedicure",
+  "Facial Treatment",
+  "Eyebrow Shaping",
+];
 
 function normalizeValue(value: string): string {
   return value.replace(/\s+/g, " ").trim();
+}
+
+function normalizePhone(value: string): string {
+  return normalizeValue(value).replace(/[.,;:!?]+$/g, "");
+}
+
+function normalizeService(value: string): string {
+  const normalizedService = normalizeValue(value).toLowerCase();
+  const matchedService = SERVICE_NAMES.find((serviceName) =>
+    normalizedService.includes(serviceName.toLowerCase()),
+  );
+
+  return matchedService ?? normalizeValue(value);
 }
 
 function extractMatch(message: string, pattern: RegExp): string | null {
@@ -63,7 +84,7 @@ export function extractLeadFromMessage(message: string): CreateLeadInput | null 
   );
   const phone = extractMatch(
     message,
-    /(?:my phone is|phone is|phone)\s*[:\-]?\s*([+\d][+\d\s().-]{6,})/i,
+    /(?:my phone is|phone is|phone)\s*[:\-]?\s*([+\d][+\d\s().,;:!?-]{6,})/i,
   );
   const service = extractMatch(
     message,
@@ -76,8 +97,8 @@ export function extractLeadFromMessage(message: string): CreateLeadInput | null 
 
   return {
     name,
-    phone,
-    service,
+    phone: normalizePhone(phone),
+    service: normalizeService(service),
   };
 }
 
