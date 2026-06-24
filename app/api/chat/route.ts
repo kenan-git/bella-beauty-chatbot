@@ -1,8 +1,11 @@
 import businessInfo from "../../../src/data/business-info.json";
+import { extractLeadFromMessage, saveLead } from "../../../src/lib/lead-manager";
 import { generateChatResponse } from "../../../src/lib/openai";
 import { createSystemPrompt } from "../../../src/lib/prompt";
 
 const GENERIC_ERROR_MESSAGE = "Something went wrong. Please try again.";
+const LEAD_SAVED_MESSAGE =
+  "Your appointment request has been saved. Our team will contact you soon.";
 const REQUIRED_MESSAGE_ERROR = "Message is required.";
 
 interface ChatRequestBody {
@@ -80,11 +83,19 @@ export async function POST(request: Request) {
   }
 
   try {
+    const userMessage = body.message.trim();
+    const leadInput = extractLeadFromMessage(userMessage);
     const systemPrompt = createSystemPrompt(businessInfo);
-    const aiResponse = await generateChatResponse(
-      systemPrompt,
-      body.message.trim(),
-    );
+    const aiResponse = await generateChatResponse(systemPrompt, userMessage);
+
+    if (leadInput) {
+      await saveLead(leadInput);
+
+      return Response.json(
+        { message: `${aiResponse}\n\n${LEAD_SAVED_MESSAGE}` },
+        { status: 200 },
+      );
+    }
 
     return Response.json({ message: aiResponse }, { status: 200 });
   } catch (error) {
