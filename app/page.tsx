@@ -42,6 +42,10 @@ export default function Home() {
           <ChatContainer />
         </div>
       </section>
+
+      <footer className="mx-auto mt-8 max-w-7xl border-t border-neutral-200/70 pt-6 text-center text-sm text-neutral-500">
+        Designed &amp; Developed by Kenan
+      </footer>
     </main>
   );
 }

@@ -137,3 +137,11 @@ src/data/leads.json
 - Database
 - Authentication
 - Dashboard
+
+## License
+
+Copyright © 2026 Kenan
+
+This repository is provided for portfolio and demonstration purposes.
+
+Commercial redistribution, resale, or unauthorized commercial use is not permitted without written permission from the author.
