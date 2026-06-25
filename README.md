@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bella Beauty Studio AI Customer Support Chatbot
 
-## Getting Started
+A modern AI customer support chatbot demo built for **Bella Beauty Studio** as a Fiverr portfolio project.  
+The chatbot helps customers ask about beauty services, prices, working hours, promotions, and appointment requests through a clean responsive chat interface.
 
-First, run the development server:
+This project includes a free **Mock AI Mode**, so it can run as a complete demo without requiring paid API usage.
+
+## Features
+
+- 🤖 AI Customer Support
+- 🧪 Mock AI Mode
+- 💇 Services Information
+- 💵 Pricing Information
+- 🕘 Working Hours
+- 🎁 Promotions
+- 📅 Appointment Requests
+- 📝 Lead Collection
+- 📁 JSON Database
+- 📱 Responsive Chat UI
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Next.js API Routes
+
+## Project Structure
+
+```txt
+bella_beauty_chatbot/
+├── app/
+│   ├── api/
+│   │   └── chat/
+│   │       └── route.ts
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── src/
+│   ├── components/
+│   │   └── chat/
+│   │       ├── ChatContainer.tsx
+│   │       ├── ChatInput.tsx
+│   │       ├── ChatMessage.tsx
+│   │       └── TypingIndicator.tsx
+│   ├── data/
+│   │   ├── business-info.json
+│   │   └── leads.json
+│   ├── hooks/
+│   │   └── useChat.ts
+│   ├── lib/
+│   │   ├── lead-manager.ts
+│   │   ├── openai.ts
+│   │   └── prompt.ts
+│   └── types/
+│       ├── chat.ts
+│       └── lead.ts
+├── .env.example
+├── package.json
+└── README.md
+```
+
+## Installation
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the app in your browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+Use `.env.example` as a reference for local environment configuration.
 
-To learn more about Next.js, take a look at the following resources:
+Create a `.env.local` file in the project root and add:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+USE_MOCK_AI=true
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For a free portfolio demo, keep mock mode enabled:
 
-## Deploy on Vercel
+```env
+USE_MOCK_AI=true
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+When `USE_MOCK_AI=true`, the app returns professional demo responses without calling the OpenAI API.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Demo
+
+Example mock AI conversation:
+
+```txt
+User:
+What services do you offer?
+
+Assistant:
+We offer Hair Cut, Hair Coloring, Manicure, Pedicure, Facial Treatment and Eyebrow Shaping.
+
+User:
+Show me your prices
+
+Assistant:
+Our prices start from $20 and vary depending on the selected service.
+
+User:
+I want to book an appointment. My name is Sarah, my phone is 555-123-4567, service is manicure.
+
+Assistant:
+To book an appointment, please provide your full name, phone number and desired service.
+
+Your appointment request has been saved. Our team will contact you soon.
+```
+
+Appointment lead data is saved to:
+
+```txt
+src/data/leads.json
+```
+
+## Future Improvements
+
+- OpenAI API
+- Database
+- Authentication
+- Dashboard
