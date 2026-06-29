@@ -71,6 +71,19 @@ function parseLeadsJson(value: string): AppointmentLead[] {
   return parsed.filter(isAppointmentLead);
 }
 
+function createAppointmentLead(leadInput: CreateLeadInput): AppointmentLead {
+  return {
+    id: randomUUID(),
+    ...leadInput,
+    status: "new",
+    createdAt: new Date().toISOString(),
+  };
+}
+
+function shouldPersistLeadToJson(): boolean {
+  return process.env.NODE_ENV !== "production";
+}
+
 /**
  * Extracts appointment lead details from a customer message.
  *
@@ -111,13 +124,13 @@ export function extractLeadFromMessage(message: string): CreateLeadInput | null 
 export async function saveLead(
   leadInput: CreateLeadInput,
 ): Promise<AppointmentLead> {
+  const lead = createAppointmentLead(leadInput);
+
+  if (!shouldPersistLeadToJson()) {
+    return lead;
+  }
+
   const existingLeads = parseLeadsJson(await readFile(LEADS_FILE_PATH, "utf8"));
-  const lead: AppointmentLead = {
-    id: randomUUID(),
-    ...leadInput,
-    status: "new",
-    createdAt: new Date().toISOString(),
-  };
 
   await writeFile(
     LEADS_FILE_PATH,

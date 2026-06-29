@@ -131,6 +131,8 @@ Appointment lead data is saved to:
 src/data/leads.json
 ```
 
+The JSON database is included for local demo purposes. In production deployments such as Vercel, file writes are not reliable for persistent storage. For a real client project, this lead collection flow can be connected to Supabase, PostgreSQL, or another production-ready database.
+
 ## Future Improvements
 
 - OpenAI API
