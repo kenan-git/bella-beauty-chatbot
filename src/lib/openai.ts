@@ -7,10 +7,6 @@ const EMPTY_RESPONSE_FALLBACK =
 
 let openAIClient: OpenAI | null = null;
 
-function isMockAIEnabled(): boolean {
-  return process.env.USE_MOCK_AI === "true";
-}
-
 function getOpenAIClient(): OpenAI {
   const apiKey = process.env.OPENAI_API_KEY;
 
@@ -71,7 +67,7 @@ export async function generateChatResponse(
   systemPrompt: string,
   userMessage: string,
 ): Promise<string> {
-  if (isMockAIEnabled()) {
+  if (process.env.USE_MOCK_AI === "true") {
     return generateMockChatResponse(userMessage);
   }
 
