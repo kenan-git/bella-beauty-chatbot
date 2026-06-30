@@ -1,10 +1,27 @@
 # Bella Beauty Studio - AI Customer Support Chatbot
 
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=nextdotjs)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-API-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel)
+![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
 A modern AI customer support chatbot built for **Bella Beauty Studio** as a professional Fiverr portfolio project. It helps visitors ask about services, pricing, business information, promotions, and appointment requests through a clean responsive chat interface.
 
 ## Live Demo
 
-[View Live Demo](https://bella-beauty-chatbot.vercel.app)
+**Live App:** [bella-beauty-chatbot.vercel.app](https://bella-beauty-chatbot.vercel.app)  
+**GitHub Repository:** [kenan-git/bella-beauty-chatbot](https://github.com/kenan-git/bella-beauty-chatbot)
+
+## Built With
+
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- OpenAI API
+- Vercel
 
 ## Features
 
@@ -17,15 +34,6 @@ A modern AI customer support chatbot built for **Bella Beauty Studio** as a prof
 - Next.js App Router
 - TypeScript
 - Clean Architecture
-
-## Tech Stack
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- OpenAI API
-- Vercel
 
 ## Screenshots
 
